@@ -16,6 +16,9 @@ public class Heap {
 
         build_heap(numList);
         System.out.println(numList);
+        Integer maxValue= extract_max_value(numList);
+        System.out.println("MaxValue: " + maxValue);
+        System.out.println(numList);
     }
 
     public static void build_heap(List<Integer> numList) {
@@ -54,6 +57,17 @@ public class Heap {
         numList.set(largest,indexValue);
 
         max_heapify(numList, largest);
+    }
+
+    public static Integer extract_max_value(List<Integer> numList){
+        int size = numList.size();
+        if(size == 0)
+            return null;
+        Integer maxValue = numList.get(0);
+        numList.set(0,numList.get(size-1));
+        numList.remove(size-1);
+        max_heapify(numList, 0);
+        return maxValue;
     }
 }
 
