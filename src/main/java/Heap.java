@@ -16,8 +16,10 @@ public class Heap {
 
         build_heap(numList);
         System.out.println(numList);
-        Integer maxValue= extract_max_value(numList);
-        System.out.println("MaxValue: " + maxValue);
+        //Integer maxValue= extract_max_value(numList);
+        //System.out.println("MaxValue: " + maxValue);
+        System.out.println(numList);
+        increase_key_and_restructure_heap(numList, 2, 400);
         System.out.println(numList);
     }
 
@@ -68,6 +70,19 @@ public class Heap {
         numList.remove(size-1);
         max_heapify(numList, 0);
         return maxValue;
+    }
+
+    public static void increase_key_and_restructure_heap(List<Integer> numList,int index, int value) {
+        if(index<0 || index>=numList.size())
+            return ;
+        numList.set(index,value);
+
+        while(index>0 && numList.get(index) > numList.get(index/2)) {
+            int temp = numList.get(index);
+            numList.set(index,numList.get((int)Math.floor((index-1)/2)));
+            numList.set((int)Math.floor((index-1)/2),temp);
+            index = (int)Math.floor((index-1)/2);
+        }
     }
 }
 
